@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>convite Sidney & Robecivana</title>
+
+<!-- Fontes elegantes -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    color: #333;
+    overflow-x: hidden;
+    background-color: #fafafa;
+  }
+
+  /* ===== CAPA ===== */
+  .capa {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url('img/WhatsApp\ Image\ 2025-10-27\ at\ 11.12.28.jpeg') center center / cover no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .capa::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .capa::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to bottom, rgba(250,250,250,0) 0%, #fafafa 100%);
+    z-index: 2;
+  }
+
+  /* ===== ENVELOPE (flores animadas) ===== */
+  .envelope {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%);
+  }
+
+  .envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('img/imagem flor1.png');
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: translateY(50px) scale(1.1);
+    animation: floresBrotando 3s ease-out forwards;
+    z-index: 1;
+  }
+
+  /* Flores decorativas flutuantes */
+  .envelope::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(201, 168, 106, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 90% 30%, rgba(13, 83, 168, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 20% 60%, rgba(201, 168, 106, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 85% 70%, rgba(13, 83, 168, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 15% 85%, rgba(201, 168, 106, 0.07) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+    animation: floresFlutuar 20s ease-in-out infinite;
+  }
+
+  @keyframes floresFlutuar {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-20px) scale(1.05);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes floresBrotando {
+    0% {
+      opacity: 0;
+      transform: translateY(50px) scale(1.1);
+    }
+    60% {
+      opacity: 0.15;
+      transform: translateY(-5px) scale(1);
+    }
+    100% {
+      opacity: 0.2;
+      transform: translateY(0);
+    }
+  }
+
+  .envelope > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== CONTEÚDO ===== */
+  .conteudo {
+    background-color: transparent;
+    color: #333;
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  /* Ornamento decorativo */
+  .ornamento {
+    font-size: 2.5rem;
+    color: #c9a86a;
+    margin-bottom: 20px;
+    animation: brilho 3s ease-in-out infinite;
+  }
+
+  @keyframes brilho {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  .iniciais {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0d53a8 0%, #4a90e2 50%, #0d53a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 40px;
+    letter-spacing: 0.2em;
+    animation: fadeInScale 1.5s ease-out;
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .versiculo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: #2c5aa0;
+    margin: 0 auto 20px;
+    max-width: 800px;
+    line-height: 1.8;
+    font-weight: 400;
+    font-style: italic;
+    padding: 0 20px;
+  }
+
+  .versiculo2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 80px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 300;
+  }
+
+  .divider {
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c9a86a, transparent);
+    margin: 60px auto;
+  }
+
+  .iniciais2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #0d53a8;
+    margin-bottom: 25px;
+    font-weight: 400;
+  }
+
+  .convite {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 300;
+  }
+
+  section {
+    max-width: 900px;
+    margin: auto;
+    padding: 80px 40px;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1.8s ease, transform 1.8s ease;
+  }
+
+  section.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #0d53a8;
+    margin-bottom: 40px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #c9a86a;
+  }
+
+  p {
+    font-size: 1.4rem;
+    line-height: 2;
+    color: #444;
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0d53a8;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  a:hover {
+    color: #4a90e2;
+    border-bottom: 1px solid #4a90e2;
+  }
+
+  /* ===== FORMULÁRIO ===== */
+  .form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-container::before {
+    content: "❀";
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 3rem;
+    color: rgba(201, 168, 106, 0.15);
+    z-index: 0;
+    animation: giraPetala 15s linear infinite;
+  }
+
+  .form-container::after {
+    content: "❀";
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    font-size: 2.5rem;
+    color: rgba(13, 83, 168, 0.12);
+    z-index: 0;
+    animation: giraPetala 12s linear infinite reverse;
+  }
+
+  .form-container > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes giraPetala {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+
+  button {
+    background: linear-gradient(135deg, #0d53a8 0%, #4a90e2 100%);
+    color: white;
+    border: none;
+    padding: 16px 50px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(13, 83, 168, 0.3);
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(13, 83, 168, 0.4);
+  }
+
+  button:active {
+    transform: translateY(0);
+  }
+
+  /* ===== CONTAGEM REGRESSIVA ===== */
+  #countdown {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #0d53a8;
+    margin-top: 30px;
+    font-weight: 600;
+  }
+
+  .countdown-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 10px;
+  }
+
+  /* ===== CARDS DE LOCAIS ===== */
+  .locais-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .local-card {
+    background: white;
+    padding: 35px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .local-card::before {
+    content: "✿";
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 2rem;
+    color: rgba(201, 168, 106, 0.12);
+    z-index: 0;
+  }
+
+  .local-card::after {
+    content: "✿";
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: rgba(13, 83, 168, 0.1);
+    z-index: 0;
+  }
+
+  .local-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .local-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+  }
+
+  .local-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+  }
+
+  .local-nome {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #0d53a8;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  .btn-local {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0d53a8 0%, #4a90e2 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(13, 83, 168, 0.3);
+    border: none;
+  }
+
+  .btn-local:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(13, 83, 168, 0.4);
+    border-bottom: none;
+  }
+
+  .btn-local svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* ===== PRESENTE / PIX ===== */
+  .presente-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .presente-texto {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .pix-card {
+    background: white;
+    padding: 40px 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pix-card::before {
+    content: "✾";
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2.5rem;
+    color: rgba(50, 188, 173, 0.1);
+    z-index: 0;
+    animation: pulsaFlor 3s ease-in-out infinite;
+  }
+
+  .pix-card::after {
+    content: "✾";
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+    font-size: 2.5rem;
+    color: rgba(201, 168, 106, 0.12);
+    z-index: 0;
+    animation: pulsaFlor 3s ease-in-out infinite 1.5s;
+  }
+
+  .pix-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes pulsaFlor {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  .pix-icon {
+    color: #32bcad;
+    margin-bottom: 20px;
+  }
+
+  .pix-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 15px;
+  }
+
+  .pix-chave {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    color: #0d53a8;
+    font-weight: 600;
+    padding: 20px;
+    background: #f5f8fb;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    word-break: break-all;
+  }
+
+  .btn-copiar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #32bcad 0%, #4dd4c4 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(50, 188, 173, 0.3);
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-copiar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(50, 188, 173, 0.4);
+  }
+
+  .btn-copiar svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mensagem-copiado {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4dd4c4;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .mensagem-copiado.show {
+    opacity: 1;
+  }
+
+  /* ===== FOTO FINAL ===== */
+  .foto-final {
+    position: relative;
+    height: 100vh;
+    background: url('img/WhatsApp\ Image\ 2025-10-27\ at\ 11.12.29.jpeg') center center / cover no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 2s ease, transform 2s ease;
+  }
+
+  .foto-final.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .foto-final::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  .foto-final::after {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, rgba(250,250,250,0) 0%, #fafafa 100%);
+    z-index: 2;
+  }
+
+  .foto-final-texto {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+  }
+
+  .foto-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: white;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
+  }
+
+  .foto-final h2::after {
+    display: none;
+  }
+
+  .foto-final-subtexto {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  /* ===== RESPONSIVO ===== */
+  @media (max-width: 768px) {
+    .capa { font-size: 3rem; }
+    .iniciais { font-size: 4rem; }
+    .iniciais2 { font-size: 2.5rem; }
+    .versiculo { font-size: 1.4rem; }
+    .convite { font-size: 0.9rem; }
+    h2 { font-size: 2rem; }
+    .foto-final h2 { font-size: 3rem; }
+    section { padding: 60px 20px; }
+    .form-container { padding: 30px 20px; }
+    #countdown { font-size: 1.8rem; }
+    .locais-container {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .local-card {
+      max-width: 100%;
+    }
+  }
+
+  /* Animação de entrada suave */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .conteudo > * {
+    animation: fadeIn 1s ease-out backwards;
+  }
+
+  .conteudo > *:nth-child(1) { animation-delay: 0.1s; }
+  .conteudo > *:nth-child(2) { animation-delay: 0.3s; }
+  .conteudo > *:nth-child(3) { animation-delay: 0.5s; }
+  .conteudo > *:nth-child(4) { animation-delay: 0.7s; }
+  .conteudo > *:nth-child(5) { animation-delay: 0.9s; }
+  .conteudo > *:nth-child(6) { animation-delay: 1.1s; }
+
+  .mensagem-confirmacao {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #32bcad;
+  color: white;
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.mensagem-confirmacao.show {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+  <!-- CAPA -->
+  <div class="capa"></div>
+
+  <!-- ENVELOPE COM FLORES -->
+  <div class="envelope">
+    <div class="conteudo">
+
+      <div class="ornamento">✦</div>
+      <div class="iniciais">S & R</div>
+
+      <div class="versiculo">
+        "Assim, eles já não são dois, mas sim uma só carne.<br>
+        Portanto, o que Deus uniu, ninguém separa."
+      </div>
+
+      <div class="versiculo2">Mateus 19:6</div>
+
+      <div class="divider"></div>
+
+      <div class="iniciais2">Sidney & Robecivana</div>
+
+      <div class="convite">Convidam para celebrar seu casamento</div>
+
+      <section>
+        <h2>Celebração</h2>
+        <p>💒 13 de Dezembro de 2025</p>
+        <p>🕔 17h</p>
+        
+        <div class="locais-container">
+          <div class="local-card">
+            <div class="local-titulo">Cerimônia</div>
+            <div class="local-nome">Bereana Cupecê</div>
+            <a href="https://www.google.com/maps/place/Bereana+Cupec%C3%AA/@-23.6692884,-46.6510863,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce455014b12afb:0xaa8a11557716cb55!8m2!3d-23.6692884!4d-46.648506!16s%2Fg%2F11j0rzyr7j?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-local">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Ver no mapa
+            </a>
+          </div>
+
+          <div class="local-card">
+            <div class="local-titulo">Local de Comes e Bebes</div>
+            <div class="local-nome">Tendall Aeroporto</div>
+            <a href="https://maps.app.goo.gl/gnAzGa6e3eEuW4PJ9" target="_blank" class="btn-local">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Ver no mapa
+            </a>
+            <div class="obs">Valor do Rodízio R$ 129,90 (bebida a parte)</div>
+            <div class="obs">Observação:o rodizio cada um paga o seu</div>
+          </div>
+        </div>
+      </section>
+
+<section>
+  <h2>Confirme Sua Presença</h2>
+  <div class="form-container">
+    <form onsubmit="enviarWhatsApp(); return false;">
+      <input type="text" name="nome" id="nome" placeholder="Nome completo" required>
+      <input type="tel" name="contato" id="contato" placeholder="Telefone para contato" required>
+      <input type="text" name="rodizio" id="rodizio" placeholder="Confirmar para ir no rodízio" required>
+      <button type="submit">Confirmar Presença</button>
+      <div id="mensagemConfirmacao" class="mensagem-confirmacao">Sua presença foi confirmada, obrigado!</div>
+    </form>
+  </div>
+</section>
+
+      <section>
+        <h2>Contagem Regressiva</h2>
+        <p id="countdown"></p>
+        <p class="countdown-label">Para o grande dia</p>
+      </section>
+
+      <section>
+        <h2>Presente para os Noivos</h2>
+        <div class="presente-container">
+          <p class="presente-texto">
+            Sua presença é o nosso maior presente! Mas se desejar nos presentear, 
+            aceitamos contribuições via PIX:
+          </p>
+          
+          <div class="pix-card">
+            <div class="pix-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="pix-label">Chave PIX</div>
+            <div class="pix-chave" id="pixChave">11995561410</div>
+            <button class="btn-copiar" onclick="copiarPix()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copiar chave
+            </button>
+            <div class="mensagem-copiado" id="mensagemCopiado">✓ Chave copiada!</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- FOTO FINAL -->
+  <div class="foto-final" id="fotoFinal">
+    <div class="foto-final-texto">
+      <h2>Até Breve!</h2>
+      <p class="foto-final-subtexto">Com amor, Sidney & Robecivana</p>
+    </div>
+  </div>
+<!-- Áudio -->
+<audio id="audioFundo" loop>
+  <source src="audio/WhatsApp Audio 2025-10-27 at 16.19.50.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- Botão discreto -->
+<button id="playMusica" 
+        style="position: fixed; bottom: 15px; right: 15px; padding: 10px 18px; 
+               background: rgba(13,83,168,0.8); color:white; border:none; 
+               border-radius:25px; cursor:pointer; font-family: 'Montserrat', sans-serif; z-index:1000;">
+  ▶ Ouvir música
+</button>
+<script>
+  // Animações de entrada
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visivel");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll("section, .foto-final").forEach(el => observer.observe(el));
+
+  // Contagem regressiva
+  const weddingDate = new Date("December 13, 2025 17:00:00").getTime();
+  const countdown = document.getElementById("countdown");
+  
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+    
+    if (diff < 0) { 
+      countdown.textContent = "O grande dia chegou!"; 
+      return; 
+    }
+    
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    
+    countdown.textContent = `${d} dias, ${h} horas e ${m} minutos`;
+  }
+  
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Copiar chave PIX
+  function copiarPix() {
+    const pixChave = document.getElementById('pixChave').textContent;
+    const mensagem = document.getElementById('mensagemCopiado');
+    
+    navigator.clipboard.writeText(pixChave).then(() => {
+      mensagem.classList.add('show');
+      setTimeout(() => {
+        mensagem.classList.remove('show');
+      }, 2000);
+    }).catch(err => {
+      console.error('Erro ao copiar:', err);
+    });
+  }
+function enviarWhatsApp() {
+  const nome = document.getElementById('nome').value;
+  const contato = document.getElementById('contato').value;
+  const rodizio = document.getElementById('rodizio').value;
+
+  const mensagem = `🎉 Confirmação de Presença 🎉%0A%0A` +
+                   `👤 Nome: ${nome}%0A` +
+                   `📞 Contato: ${contato}%0A` +
+                   `🍽 Rodízio: ${rodizio}`;
+
+  const numero = "5511930067548";
+  const link = `https://wa.me/${numero}?text=${mensagem}`;
+  window.open(link, '_blank');
+
+  // Mostra mensagem de confirmação temporária
+  const mensagemDiv = document.getElementById('mensagemConfirmacao');
+  mensagemDiv.classList.add('show');
+
+  // Esconde após 3 segundos
+  setTimeout(() => {
+    mensagemDiv.classList.remove('show');
+  }, 3000);
+
+  // Limpa o formulário
+  document.querySelector('form').reset();
+}
+
+  const botaoMusica = document.getElementById('playMusica');
+  const audio = document.getElementById('audioFundo');
+
+  // Alterna entre tocar e pausar a música
+  botaoMusica.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play()
+        .then(() => botaoMusica.innerText = "⏸️ Pausar Música")
+        .catch(err => console.log("Erro ao tocar música:", err));
+    } else {
+      audio.pause();
+      botaoMusica.innerText = "🎵 Tocar Música";
+    }
+  });
+
+  </script>
+
+</button>
+</body>
+</html>
