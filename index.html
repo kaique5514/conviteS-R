@@ -26,6 +26,336 @@
     background-color: #fafafa;
   }
 
+  /* ===== ENVELOPE INICIAL (CAPA) ===== */
+  #envelope-capa {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffffff 0%, #205de0 50%, #fdfeff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 1s ease 0.8s;
+    overflow: hidden;
+  }
+
+  #envelope-capa.aberto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Impede scroll enquanto envelope está aberto */
+  body.envelope-ativo {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .envelope-container {
+    position: relative;
+    width: 90vw;
+    max-width: 500px;
+    height: 70vh;
+    max-height: 700px;
+  }
+
+  /* Corpo do envelope */
+  .envelope-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+    background: linear-gradient(to bottom, #f8f8f8 0%, #f0f0f0 100%);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    transition: transform 0.8s ease;
+  }
+
+  /* Tampa do envelope */
+  .envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+    clip-path: polygon(0 0, 50% 70%, 100% 0);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transform-origin: top center;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 2;
+  }
+
+  /* Animação de abertura */
+  .envelope-wrapper.abrindo .envelope-flap {
+    transform: rotateX(-180deg);
+  }
+
+  .envelope-wrapper.abrindo .envelope-body {
+    transform: scale(0.95);
+  }
+
+  .envelope-wrapper.abrindo .envelope-content {
+    animation: cartaoSaindo 0.8s ease forwards 0.3s;
+  }
+
+  @keyframes cartaoSaindo {
+    0% {
+      transform: translate(-50%, -50%) translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) translateY(-150%) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  /* Borda dourada do envelope */
+  .envelope-border {
+    position: absolute;
+    top: 39%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #c9a86a, #d4b57a, #c9a86a, transparent);
+    z-index: 1;
+    box-shadow: 0 2px 10px rgba(201, 168, 106, 0.3);
+  }
+
+  /* Conteúdo do envelope */
+  .envelope-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 3;
+    width: 85%;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .envelope-iniciais {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0d53a8 0%, #4a90e2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    letter-spacing: 0.2em;
+  }
+
+  .envelope-texto {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 15px;
+  }
+
+  .envelope-nomes {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #0d53a8;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+
+  .envelope-ornamento {
+    font-size: 2.5rem;
+    color: #c9a86a;
+    margin-bottom: 25px;
+    animation: brilhoEnvelope 2s ease-in-out infinite;
+  }
+
+  @keyframes brilhoEnvelope {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+
+  .envelope-instrucao {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #999;
+    margin-top: 25px;
+    animation: pulsar 2s ease-in-out infinite;
+  }
+
+  @keyframes pulsar {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* Selo decorativo */
+  .envelope-selo {
+    position: absolute;
+    top: 42%;
+    right: 8%;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #c9a86a 0%, #d4b57a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(201, 168, 106, 0.5);
+    z-index: 4;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .envelope-selo::before {
+    content: "S&R";
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Flores decorativas de fundo */
+  .envelope-flores {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .flor-decorativa {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    opacity: 0.2;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: flutuarFlor 8s ease-in-out infinite;
+  }
+
+  /* Posicionamento das flores */
+  .flor-decorativa:nth-child(1) {
+    top: 5%;
+    left: 8%;
+    animation-delay: 0s;
+    animation-duration: 7s;
+  }
+
+  .flor-decorativa:nth-child(2) {
+    top: 10%;
+    right: 10%;
+    animation-delay: 1.5s;
+    animation-duration: 9s;
+    transform: rotate(45deg);
+  }
+
+  .flor-decorativa:nth-child(3) {
+    top: 35%;
+    left: 5%;
+    animation-delay: 0.8s;
+    animation-duration: 8s;
+    width: 100px;
+    height: 100px;
+    opacity: 0.15;
+  }
+
+  .flor-decorativa:nth-child(4) {
+    top: 40%;
+    right: 7%;
+    animation-delay: 2s;
+    animation-duration: 10s;
+    transform: rotate(-30deg);
+    width: 110px;
+    height: 110px;
+  }
+
+  .flor-decorativa:nth-child(5) {
+    bottom: 15%;
+    left: 12%;
+    animation-delay: 1s;
+    animation-duration: 8.5s;
+    transform: rotate(90deg);
+  }
+
+  .flor-decorativa:nth-child(6) {
+    bottom: 10%;
+    right: 8%;
+    animation-delay: 0.5s;
+    animation-duration: 9.5s;
+    opacity: 0.18;
+  }
+
+  .flor-decorativa:nth-child(7) {
+    top: 60%;
+    left: 15%;
+    animation-delay: 1.8s;
+    animation-duration: 7.5s;
+    width: 90px;
+    height: 90px;
+    opacity: 0.12;
+    transform: rotate(-45deg);
+  }
+
+  .flor-decorativa:nth-child(8) {
+    top: 70%;
+    right: 12%;
+    animation-delay: 2.5s;
+    animation-duration: 8.8s;
+    width: 95px;
+    height: 95px;
+    transform: rotate(60deg);
+  }
+
+  /* Animação de flutuação com rotação */
+  @keyframes flutuarFlor {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg) scale(1);
+      opacity: 0.15;
+    }
+    25% {
+      transform: translateY(-15px) rotate(5deg) scale(1.05);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translateY(-25px) rotate(-5deg) scale(1.1);
+      opacity: 0.2;
+    }
+    75% {
+      transform: translateY(-10px) rotate(3deg) scale(1.03);
+      opacity: 0.22;
+    }
+  }
+
+  @keyframes flutuarFlor {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(10deg);
+    }
+  }
+
 /* ===== CAPA ===== */
 .capa {
   position: relative;
@@ -483,6 +813,13 @@
     height: 20px;
   }
 
+  .obs {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #666;
+    font-family: 'Montserrat', sans-serif;
+  }
+
   /* ===== PRESENTE / PIX ===== */
   .presente-container {
     max-width: 600px;
@@ -685,13 +1022,60 @@
     text-shadow: 0 2px 20px rgba(0,0,0,0.5);
   }
 
-  /* ===== RESPONSIVO ===== */
- @media (max-width: 768px) {
-  .capa {
-    background-attachment: scroll; /* evita bug em mobile */
-    background-position: center top; /* garante enquadramento correto */
-    height: 100vh;
+  .mensagem-confirmacao {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #32bcad;
+    color: white;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
   }
+
+  .mensagem-confirmacao.show {
+    opacity: 1;
+  }
+
+  /* ===== RESPONSIVO ===== */
+  @media (max-width: 768px) {
+    .capa {
+      background-attachment: scroll;
+      background-position: center top;
+      height: 100vh;
+    }
+
+    .envelope-container {
+      width: 280px;
+      height: 175px;
+    }
+
+    .envelope-body {
+      height: 160px;
+    }
+
+    .envelope-iniciais {
+      font-size: 3rem;
+    }
+
+    .envelope-nomes {
+      font-size: 1.2rem;
+    }
+
+    .envelope-selo {
+      width: 40px;
+      height: 40px;
+      top: 95px;
+      right: 25px;
+    }
+
+    .envelope-selo::before {
+      font-size: 0.75rem;
+    }
+
     .iniciais { font-size: 4rem; }
     .iniciais2 { font-size: 2.5rem; }
     .versiculo { font-size: 1.4rem; }
@@ -732,26 +1116,34 @@
   .conteudo > *:nth-child(4) { animation-delay: 0.7s; }
   .conteudo > *:nth-child(5) { animation-delay: 0.9s; }
   .conteudo > *:nth-child(6) { animation-delay: 1.1s; }
-
-  .mensagem-confirmacao {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #32bcad;
-  color: white;
-  border-radius: 12px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.mensagem-confirmacao.show {
-  opacity: 1;
-}
 </style>
 </head>
 <body>
+
+  <!-- ENVELOPE CAPA INICIAL -->
+  <div id="envelope-capa">
+    <div class="envelope-flores">
+      <div class="flor-decorativa" style="background-image: url('img/LOGO.png');"></div>
+      <div class="flor-decorativa" style="background-image: url('img/LOGO.png');"></div>
+    </div>
+    
+    <div class="envelope-wrapper" onclick="abrirEnvelope()">
+      <div class="envelope-container">
+        <div class="envelope-flap"></div>
+        <div class="envelope-border"></div>
+        <div class="envelope-body"></div>
+        <div class="envelope-selo"></div>
+        
+        <div class="envelope-content">
+          <div class="envelope-ornamento">✦</div>
+          <div class="envelope-iniciais">S & R</div>
+          <div class="envelope-texto">Você está convidado</div>
+          <div class="envelope-nomes">Sidney & Robecivana</div>
+          <div class="envelope-instrucao">✨ Clique para abrir ✨</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- CAPA -->
   <div class="capa"></div>
@@ -805,23 +1197,23 @@
               Ver no mapa
             </a>
             <div class="obs">Valor do Rodízio R$ 129,90 (bebida a parte)</div>
-            <div class="obs">Observação:o rodizio cada um paga o seu</div>
+            <div class="obs">Observação: o rodizio cada um paga o seu</div>
           </div>
         </div>
       </section>
 
-<section>
-  <h2>Confirme Sua Presença</h2>
-  <div class="form-container">
-    <form onsubmit="enviarWhatsApp(); return false;">
-      <input type="text" name="nome" id="nome" placeholder="Nome completo" required>
-      <input type="tel" name="contato" id="contato" placeholder="Telefone para contato" required>
-      <input type="text" name="rodizio" id="rodizio" placeholder="Confirmar para ir no rodízio" required>
-      <button type="submit">Confirmar Presença</button>
-      <div id="mensagemConfirmacao" class="mensagem-confirmacao">Sua presença foi confirmada, obrigado!</div>
-    </form>
-  </div>
-</section>
+      <section>
+        <h2>Confirme Sua Presença</h2>
+        <div class="form-container">
+          <form onsubmit="enviarWhatsApp(); return false;">
+            <input type="text" name="nome" id="nome" placeholder="Nome completo" required>
+            <input type="tel" name="contato" id="contato" placeholder="Telefone para contato" required>
+            <input type="text" name="rodizio" id="rodizio" placeholder="Confirmar para ir no rodízio" required>
+            <button type="submit">Confirmar Presença</button>
+            <div id="mensagemConfirmacao" class="mensagem-confirmacao">Sua presença foi confirmada, obrigado!</div>
+          </form>
+        </div>
+      </section>
 
       <section>
         <h2>Contagem Regressiva</h2>
@@ -870,112 +1262,138 @@
       <p class="foto-final-subtexto">Com amor, Sidney & Robecivana</p>
     </div>
   </div>
-<!-- Áudio -->
-<audio id="audioFundo" loop>
-  <source src="audio/WhatsApp Audio 2025-10-27 at 16.19.50.mpeg" type="audio/mpeg">
-</audio>
 
-<!-- Botão discreto -->
-<button id="playMusica" 
-        style="position: fixed; bottom: 15px; right: 15px; padding: 10px 18px; 
-               background: rgba(13,83,168,0.8); color:white; border:none; 
-               border-radius:25px; cursor:pointer; font-family: 'Montserrat', sans-serif; z-index:1000;">
-  ▶ Ouvir música
-</button>
-<script>
-  // Animações de entrada
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visivel");
-        observer.unobserve(entry.target);
+  <!-- Áudio -->
+  <audio id="audioFundo" loop>
+    <source src="audio/WhatsApp Audio 2025-10-27 at 16.19.50.mpeg" type="audio/mpeg">
+  </audio>
+
+  <!-- Botão discreto -->
+  <button id="playMusica" 
+          style="position: fixed; bottom: 15px; right: 15px; padding: 10px 18px; 
+                 background: rgba(13,83,168,0.8); color:white; border:none; 
+                 border-radius:25px; cursor:pointer; font-family: 'Montserrat', sans-serif; z-index:1000;">
+    ▶ Ouvir música
+  </button>
+
+  <script>
+    // Adiciona classe ao body para bloquear scroll
+    document.body.classList.add('envelope-ativo');
+
+    // Função para abrir o envelope
+    function abrirEnvelope() {
+      const envelopeCapa = document.getElementById('envelope-capa');
+      const envelopeWrapper = document.querySelector('.envelope-wrapper');
+      
+      // Adiciona classe de animação de abertura
+      envelopeWrapper.classList.add('abrindo');
+      
+      // Após a animação de abertura (1.2s), esconde o envelope
+      setTimeout(() => {
+        envelopeCapa.classList.add('aberto');
+        
+        // Remove bloqueio de scroll
+        document.body.classList.remove('envelope-ativo');
+        
+        // Remove o envelope do DOM
+        setTimeout(() => {
+          envelopeCapa.style.display = 'none';
+        }, 1000);
+      }, 1200);
+    }
+
+    // Animações de entrada
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visivel");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll("section, .foto-final").forEach(el => observer.observe(el));
+
+    // Contagem regressiva
+    const weddingDate = new Date("December 13, 2025 17:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      
+      if (diff < 0) { 
+        countdown.textContent = "O grande dia chegou!"; 
+        return; 
+      }
+      
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      
+      countdown.textContent = `${d} dias, ${h} horas e ${m} minutos`;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Copiar chave PIX
+    function copiarPix() {
+      const pixChave = document.getElementById('pixChave').textContent;
+      const mensagem = document.getElementById('mensagemCopiado');
+      
+      navigator.clipboard.writeText(pixChave).then(() => {
+        mensagem.classList.add('show');
+        setTimeout(() => {
+          mensagem.classList.remove('show');
+        }, 2000);
+      }).catch(err => {
+        console.error('Erro ao copiar:', err);
+      });
+    }
+
+    function enviarWhatsApp() {
+      const nome = document.getElementById('nome').value;
+      const contato = document.getElementById('contato').value;
+      const rodizio = document.getElementById('rodizio').value;
+
+      const mensagem = `🎉 Confirmação de Presença 🎉%0A%0A` +
+                       `👤 Nome: ${nome}%0A` +
+                       `📞 Contato: ${contato}%0A` +
+                       `🍽 Rodízio: ${rodizio}`;
+
+      const numero = "5511986573399";
+      const link = `https://wa.me/${numero}?text=${mensagem}`;
+      window.open(link, '_blank');
+
+      // Mostra mensagem de confirmação temporária
+      const mensagemDiv = document.getElementById('mensagemConfirmacao');
+      mensagemDiv.classList.add('show');
+
+      // Esconde após 3 segundos
+      setTimeout(() => {
+        mensagemDiv.classList.remove('show');
+      }, 3000);
+
+      // Limpa o formulário
+      document.querySelector('form').reset();
+    }
+
+    const botaoMusica = document.getElementById('playMusica');
+    const audio = document.getElementById('audioFundo');
+
+    // Alterna entre tocar e pausar a música
+    botaoMusica.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play()
+          .then(() => botaoMusica.innerText = "⏸️ Pausar Música")
+          .catch(err => console.log("Erro ao tocar música:", err));
+      } else {
+        audio.pause();
+        botaoMusica.innerText = "🎵 Tocar Música";
       }
     });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll("section, .foto-final").forEach(el => observer.observe(el));
-
-  // Contagem regressiva
-  const weddingDate = new Date("December 13, 2025 17:00:00").getTime();
-  const countdown = document.getElementById("countdown");
-  
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const diff = weddingDate - now;
-    
-    if (diff < 0) { 
-      countdown.textContent = "O grande dia chegou!"; 
-      return; 
-    }
-    
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    
-    countdown.textContent = `${d} dias, ${h} horas e ${m} minutos`;
-  }
-  
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // Copiar chave PIX
-  function copiarPix() {
-    const pixChave = document.getElementById('pixChave').textContent;
-    const mensagem = document.getElementById('mensagemCopiado');
-    
-    navigator.clipboard.writeText(pixChave).then(() => {
-      mensagem.classList.add('show');
-      setTimeout(() => {
-        mensagem.classList.remove('show');
-      }, 2000);
-    }).catch(err => {
-      console.error('Erro ao copiar:', err);
-    });
-  }
-function enviarWhatsApp() {
-  const nome = document.getElementById('nome').value;
-  const contato = document.getElementById('contato').value;
-  const rodizio = document.getElementById('rodizio').value;
-
-  const mensagem = `🎉 Confirmação de Presença 🎉%0A%0A` +
-                   `👤 Nome: ${nome}%0A` +
-                   `📞 Contato: ${contato}%0A` +
-                   `🍽 Rodízio: ${rodizio}`;
-
-  const numero = "5511986573399";
-  const link = `https://wa.me/${numero}?text=${mensagem}`;
-  window.open(link, '_blank');
-
-  // Mostra mensagem de confirmação temporária
-  const mensagemDiv = document.getElementById('mensagemConfirmacao');
-  mensagemDiv.classList.add('show');
-
-  // Esconde após 3 segundos
-  setTimeout(() => {
-    mensagemDiv.classList.remove('show');
-  }, 3000);
-
-  // Limpa o formulário
-  document.querySelector('form').reset();
-}
-
-  const botaoMusica = document.getElementById('playMusica');
-  const audio = document.getElementById('audioFundo');
-
-  // Alterna entre tocar e pausar a música
-  botaoMusica.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play()
-        .then(() => botaoMusica.innerText = "⏸️ Pausar Música")
-        .catch(err => console.log("Erro ao tocar música:", err));
-    } else {
-      audio.pause();
-      botaoMusica.innerText = "🎵 Tocar Música";
-    }
-  });
-
   </script>
 
-</button>
 </body>
 </html>
